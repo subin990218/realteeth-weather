@@ -5,3 +5,4 @@ export {
   getCurrentPosition,
   type GeoLocation
 } from './geocoding';
+export { getCoordinatesFromKoreanAddress } from './coordinates';
