@@ -69,7 +69,7 @@ export function SearchInput({ onSelect, placeholder = '지역을 검색하세요
         onFocus={() => query.trim() && results.length > 0 && setIsOpen(true)}
         onBlur={() => setTimeout(() => setIsOpen(false), 150)}
         placeholder={placeholder}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
       />
 
       {isOpen && (
@@ -81,7 +81,7 @@ export function SearchInput({ onSelect, placeholder = '지역을 검색하세요
             <li
               key={district.fullAddress}
               onClick={() => handleSelect(district)}
-              className={`px-4 py-3 cursor-pointer transition-colors ${
+              className={`px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base cursor-pointer transition-colors ${
                 index === activeIndex
                   ? 'bg-blue-50 text-blue-700'
                   : 'hover:bg-gray-50'

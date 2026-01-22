@@ -40,8 +40,12 @@ export async function fetchForecastWeather(lat: number, lon: number): Promise<{
     });
 
     const list = response.data.list;
+    const now = Date.now();
+    const threeHoursAgo = now - 3 * 60 * 60 * 1000;
 
-    const next24Hours = list.slice(0, 8);
+    // 현재 시간 기준 3시간 전 이후 데이터만 포함 (현재 블록 1개 + 미래 예보)
+    const futureData = list.filter((item) => item.dt * 1000 >= threeHoursAgo);
+    const next24Hours = futureData.slice(0, 8);
     const temps = next24Hours.map((item) => item.main.temp);
 
     const todayMin = temps.length > 0 ? Math.round(Math.min(...temps)) : 0;

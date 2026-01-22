@@ -43,32 +43,32 @@ export function FavoriteCard({ favorite, onUpdate }: FavoriteCardProps) {
     <>
       <div
         onClick={handleClick}
-        className="bg-white rounded-xl p-4 shadow-md cursor-pointer hover:shadow-lg transition-shadow"
+        className="bg-white rounded-xl p-3 md:p-4 shadow-md cursor-pointer hover:shadow-lg transition-shadow"
       >
-        <div className="flex items-start justify-between mb-2">
-          <h3 className="font-semibold text-gray-800 truncate flex-1">
+        <div className="flex items-start justify-between mb-1 md:mb-2">
+          <h3 className="font-semibold text-gray-800 truncate flex-1 text-sm md:text-base">
             {favorite.nickname}
           </h3>
-          <span className="text-2xl ml-2">{icon}</span>
+          <span className="text-xl md:text-2xl ml-2">{icon}</span>
         </div>
 
         {isLoading ? (
-          <div className="text-gray-400 text-sm">로딩중...</div>
+          <div className="text-gray-400 text-xs md:text-sm">로딩중...</div>
         ) : weather ? (
           <>
-            <p className="text-3xl font-light text-gray-800">{weather.temp}°</p>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-2xl md:text-3xl font-light text-gray-800">{weather.temp}°</p>
+            <p className="text-xs md:text-sm text-gray-500 mt-1">
               {weather.tempMin}° / {weather.tempMax}°
             </p>
           </>
         ) : (
-          <p className="text-sm text-gray-400">정보 없음</p>
+          <p className="text-xs md:text-sm text-gray-400">정보 없음</p>
         )}
 
-        <div className="flex gap-2 mt-3 pt-3 border-t border-gray-100">
+        <div className="flex gap-2 mt-2 md:mt-3 pt-2 md:pt-3 border-t border-gray-100">
           <button
             onClick={handleEditClick}
-            className="px-2 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded transition-colors"
+            className="px-2 py-1 text-xs md:text-sm text-blue-600 hover:bg-blue-50 rounded transition-colors"
           >
             편집
           </button>

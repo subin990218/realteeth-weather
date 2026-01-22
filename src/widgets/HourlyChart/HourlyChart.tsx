@@ -21,22 +21,31 @@ export function HourlyChart({ data }: HourlyChartProps) {
     );
   }
 
-  const chartData = data.map((item) => ({
-    ...item,
-    label: `${item.date} ${item.time}`,
-  }));
+  const chartData = data.map((item, index) => {
+    const prevItem = index > 0 ? data[index - 1] : null;
+    const showDate = !prevItem || prevItem.date !== item.date;
+    return {
+      ...item,
+      label: showDate ? `${item.date} ${item.time}` : item.time,
+    };
+  });
 
   const chartWidth = Math.max(chartData.length * 80, 400);
 
   return (
-    <div className="bg-white rounded-xl p-4 shadow-md">
-      <h3 className="font-semibold text-gray-800 mb-4">
+    <div className="bg-white rounded-xl p-3 md:p-4 shadow-md">
+      <h3 className="font-semibold text-gray-800 mb-3 md:mb-4 text-sm md:text-base">
         시간대별 기온 (3시간 간격)
       </h3>
-      <div className="outline-none" tabIndex={-1} style={{ outline: "none" }}>
-        <div style={{ width: chartWidth, height: 200 }}>
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={chartData}>
+      <div className="overflow-hidden">
+        <div
+          className="overflow-x-auto outline-none [&::-webkit-scrollbar]:hidden"
+          tabIndex={-1}
+          style={{ outline: "none", scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          <div style={{ width: chartWidth + 40, minWidth: "100%", height: 200, paddingRight: 40 }}>
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={chartData} margin={{ right: 20 }}>
               <XAxis
                 dataKey="label"
                 tick={{ fontSize: 11 }}
@@ -72,6 +81,7 @@ export function HourlyChart({ data }: HourlyChartProps) {
               />
             </LineChart>
           </ResponsiveContainer>
+        </div>
         </div>
       </div>
     </div>

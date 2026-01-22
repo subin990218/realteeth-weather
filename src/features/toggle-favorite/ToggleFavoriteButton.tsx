@@ -46,7 +46,7 @@ export function ToggleFavoriteButton({
   return (
     <button
       onClick={handleClick}
-      className={`flex items-center gap-1 px-3 py-1.5 text-sm rounded-lg transition-colors ${
+      className={`flex items-center gap-1 px-2.5 md:px-3 py-1 md:py-1.5 text-xs md:text-sm rounded-lg transition-colors ${
         isFav
           ? 'bg-yellow-400 text-yellow-900 hover:bg-yellow-500'
           : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'
