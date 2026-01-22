@@ -21,6 +21,7 @@ React + TypeScript + Vite로 만든 날씨 조회 웹 애플리케이션입니�
 3. 환경 변수 설정
    - 루트에 `.env` 파일 생성
    - `.env.example` 파일을 참고하여 API 키 설정
+     
    ```
    VITE_OPENWEATHER_API_KEY=발급받은_OpenWeatherMap_API_Key
    ```
