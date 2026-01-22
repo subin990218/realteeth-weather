@@ -21,19 +21,19 @@ export function WeatherCard({ weather, address }: WeatherCardProps) {
   const icon = WEATHER_ICONS[weather.icon] || '🌡️';
 
   return (
-    <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl p-6 shadow-lg">
-      <p className="text-lg opacity-90 mb-2">{address}</p>
+    <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl p-4 md:p-6 shadow-lg">
+      <p className="text-base md:text-lg opacity-90 mb-2">{address}</p>
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-6xl font-light">{weather.temp}°</p>
-          <p className="text-lg mt-2">{weather.description}</p>
-          <p className="text-sm opacity-80 mt-1">
+          <p className="text-5xl md:text-6xl font-light">{weather.temp}°</p>
+          <p className="text-base md:text-lg mt-2">{weather.description}</p>
+          <p className="text-xs md:text-sm opacity-80 mt-1">
             최저 {weather.tempMin}° / 최고 {weather.tempMax}°
           </p>
         </div>
-        <div className="text-7xl">{icon}</div>
+        <div className="text-5xl md:text-7xl">{icon}</div>
       </div>
-      <div className="flex gap-6 mt-4 pt-4 border-t border-white/20 text-sm">
+      <div className="flex gap-4 md:gap-6 mt-4 pt-4 border-t border-white/20 text-xs md:text-sm">
         <span>습도 {weather.humidity}%</span>
         <span>풍속 {weather.windSpeed}m/s</span>
       </div>

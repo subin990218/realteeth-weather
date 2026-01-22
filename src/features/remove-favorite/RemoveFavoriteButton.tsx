@@ -20,7 +20,7 @@ export function RemoveFavoriteButton({ id, onSuccess }: RemoveFavoriteButtonProp
   return (
     <button
       onClick={handleClick}
-      className="px-2 py-1 text-sm text-red-600 hover:bg-red-50 rounded transition-colors"
+      className="px-2 py-1 text-xs md:text-sm text-red-600 hover:bg-red-50 rounded transition-colors"
     >
       삭제
     </button>
