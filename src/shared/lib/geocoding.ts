@@ -1,4 +1,4 @@
-import { geocodingClient } from '../api/client';
+import { getCoordinatesFromKoreanAddress } from './coordinates';
 
 export interface GeoLocation {
   lat: number;
@@ -8,43 +8,22 @@ export interface GeoLocation {
 }
 
 export async function getCoordinatesFromAddress(address: string): Promise<GeoLocation | null> {
-  try {
-    const response = await geocodingClient.get('/direct', {
-      params: {
-        q: `${address}, South Korea`,
-        limit: 1,
-      },
-    });
+  const coords = getCoordinatesFromKoreanAddress(address);
 
-    if (response.data.length === 0) {
-      return null;
-    }
-
-    const { lat, lon, name, country } = response.data[0];
-    return { lat, lon, name, country };
-  } catch {
-    return null;
+  if (coords) {
+    return {
+      lat: coords.lat,
+      lon: coords.lon,
+      name: address,
+      country: 'KR',
+    };
   }
+
+  return null;
 }
 
-export async function getAddressFromCoordinates(lat: number, lon: number): Promise<string | null> {
-  try {
-    const response = await geocodingClient.get('/reverse', {
-      params: {
-        lat,
-        lon,
-        limit: 1,
-      },
-    });
-
-    if (response.data.length === 0) {
-      return null;
-    }
-
-    return response.data[0].name;
-  } catch {
-    return null;
-  }
+export async function getAddressFromCoordinates(_lat: number, _lon: number): Promise<string | null> {
+  return null;
 }
 
 export function getCurrentPosition(): Promise<GeolocationPosition> {
@@ -55,9 +34,9 @@ export function getCurrentPosition(): Promise<GeolocationPosition> {
     }
 
     navigator.geolocation.getCurrentPosition(resolve, reject, {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
+      enableHighAccuracy: false,
+      timeout: 10000,
+      maximumAge: 300000,
     });
   });
 }
